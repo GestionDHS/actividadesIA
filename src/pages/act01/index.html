@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>IA: Imágenes</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Archivo&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link href="../../style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<header>
+		<h1>Modelo de reconocimiento de imágenes</h1>
+	</header>
+	<main>
+        <p>Este modelo reconoce cuando una flecha apunta hacia arriba, abajo, derecha o izquierda.</p>
+        <section>
+            <article id="consignas">
+                
+                <ol>
+                    <li>Dibuja una flecha en una hoja de papel.<span class="material-symbols-outlined">
+                        info
+                        <img id="flecha" src="../../img/flecha.jpg" alt="">
+                        </span>
+                    </li>
+                        
+                    <li>Presiona "EMPEZAR", habilita los permisos de la cámara e intenta cumplir con los objetivos que están abajo.</li>
+                </ol>
+                
+                <button id="btn-start" type="button">EMPEZAR</button>
+                <div id="objetivos">
+                    <h2>Objetivos a cumplir</h2>
+                    <ul>
+                        <li id="obj1">Apunta la flecha hacia ARRIBA</li>
+                        <li id="obj2">Apunta la flecha hacia ABAJO</li>
+                        <li id="obj3">Apunta la flecha hacia la DERECHA</li>
+                        <li id="obj4">Apunta la flecha hacia la IZQUIERDA</li>
+                    </ul>
+                </div>
+            </article>
+            <article>
+                <div id="webcam-container"></div>
+                <!-- <div id="label-container"></div> -->
+            </article>
+        </section>
+	</main>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="script.js"></script>
+	
+</body>
+
+</html>
