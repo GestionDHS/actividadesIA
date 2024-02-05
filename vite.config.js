@@ -7,7 +7,7 @@ root:"src"
 outDir:"../dist"
 */
 export default defineConfig({
-  base: "/actividadesIA/",
+  base: "https://gestiondhs.github.io/actividadesIA/",
   root,
   build: {
     outDir,
