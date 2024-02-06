@@ -87,3 +87,28 @@ html {
     margin: 0 auto;
     display: grid;
   }
+
+  
+
+  .palabraSecretaEscondida{
+    display: none;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 45%;
+    background-color: rgba(128, 128, 128, 0.926);
+    height: 45vh;
+    text-align: center;
+    margin: auto;
+    align-items: center;
+    font-size: 20px;
+    border-radius: 4px;
+    border: 1px solid black;
+  }
+
+  .palabraSecretaMostrada{
+    display: grid;
+    transform: scale(2);
+    transition: 1s
+  }
+

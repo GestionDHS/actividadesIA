@@ -1,7 +1,11 @@
+// import tmImage from '../../tm/teachablemachine-image.min'
+import { validate } from './test';
+import Swal from 'sweetalert2'
+
 const url = "https://teachablemachine.withgoogle.com/models/qLVScoZyJ/";
 
 let model, webcam, labelContainer, maxPredictions;
-    
+
 // let clases = ["Arriba", "Abajo", "Derecha", "Izquierda"]
 
     // Load the image model and setup the webcam
@@ -15,6 +19,9 @@ let model, webcam, labelContainer, maxPredictions;
         // Note: the pose library adds "tmImage" object to your window (window.tmImage)
         model = await tmImage.load(modelURL, metadataURL);
         maxPredictions = model.getTotalClasses();
+
+        // Chequear que viene
+        // console.log();
 
        
 
@@ -38,41 +45,34 @@ let model, webcam, labelContainer, maxPredictions;
         // }
     }
     
-    document.getElementById("btn-start").addEventListener("click", init())
-
+    
     async function loop() {
         webcam.update(); // update the webcam frame
-        await predict();
-        window.requestAnimationFrame(loop);
+        let prediction = await predict();
+        let validation = await validate(prediction)
+        if (!validation || validation.length < 4) {
+            window.requestAnimationFrame(loop);
+        }else if (validation.length == 4) {
+            Swal.fire({
+                title: "¡Excelente!",
+                text: "La palabra secreta es: APRENDIZAJE",
+                imageUrl: "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWYwZXg4ODQ2YzY4ZmM2d3A3aW80em5zcDlyZzI5bDgyZzl4dXRzbCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/dM7hugod40Y1fvZ8XV/giphy.gif",
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: "Text Comics Sticker By Emojiup"
+            });
+        }
     }
-
-    // run the webcam image through the image model
+    
     async function predict() {
         // predict can take in an image, video or canvas html element
         const prediction = await model.predict(webcam.canvas);
-        // console.log(prediction);
-        for (let i = 0; i < maxPredictions; i++) {
-            if (prediction[i].probability.toFixed(2)>0.95 && prediction[i].className=="ARRIBA") {
-                document.getElementById("obj1").style.color = "green";
-            }
-            if (prediction[i].probability.toFixed(2)>0.95 && prediction[i].className=="ABAJO") {
-                document.getElementById("obj2").style.color = "green";
-            }
-            if (prediction[i].probability.toFixed(2)>0.95 && prediction[i].className=="DERECHA") {
-                document.getElementById("obj3").style.color = "green";
-            }
-            if (prediction[i].probability.toFixed(2)>0.95 && prediction[i].className=="IZQUIERDA") {
-                document.getElementById("obj4").style.color = "green";
-            }
-            // const classPrediction =
-            //     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-            // labelContainer.childNodes[i].innerHTML = classPrediction;
-
-        }
-        
+        return prediction    
     }
-
-    const pgEvent = new PgEvent();
-    window.onload = pgEvent.getValues();
-    const mensajePGExito = "Muy Bien logrado!"
-    const miTest= new TestClass(mensajePGExito);
+    
+document.getElementById("btn-start").addEventListener("click", init())
+    
+    // const pgEvent = new PgEvent();
+    // window.onload = pgEvent.getValues();
+    // const mensajePGExito = "Muy Bien logrado!"
+    // const miTest= new TestClass(mensajePGExito);
