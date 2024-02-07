@@ -7,7 +7,8 @@ root:"src"
 outDir:"../dist"
 */
 export default defineConfig({
-  base: "https://gestiondhs.github.io/actividadesIA/",
+  // base: "https://gestiondhs.github.io/actividadesIA/",
+  base: "/actividadesIA/",
   root,
   build: {
     outDir,
@@ -16,6 +17,8 @@ export default defineConfig({
       input: {
         main: resolve(root, "index.html"),
         act1: resolve(root, "pages", "act01", "index.html"),
+        act2: resolve(root, "pages", "act02", "index.html"),
+        act3: resolve(root, "pages", "act03", "index.html"),
       },
     },
   },
