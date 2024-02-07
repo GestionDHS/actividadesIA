@@ -19,6 +19,7 @@ export default defineConfig({
         act1: resolve(root, "pages", "act01", "index.html"),
         act2: resolve(root, "pages", "act02", "index.html"),
         act3: resolve(root, "pages", "act03", "index.html"),
+        act4: resolve(root, "pages", "act04", "index.html"),
       },
     },
   },
